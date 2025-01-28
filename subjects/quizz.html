@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Physics Chapter 1</title>
+    <link rel="stylesheet" href="practice.css">
+</head>
+<body>
+    <div id="quiz-container">
+        <h2>Physics Chapter 1: Mechanics</h2>
+        <div class="question">
+            <p>What is the unit of force?</p>
+        </div>
+        <div class="option" onclick="selectOption(this)">
+            <input type="radio" id="option1" name="question" value="1">
+            <label for="option1">Newton</label>
+        </div>
+        <div class="option" onclick="selectOption(this)">
+            <input type="radio" id="option2" name="question" value="2">
+            <label for="option2">Joule</label>
+        </div>
+        <div class="option" onclick="selectOption(this)">
+            <input type="radio" id="option3" name="question" value="3">
+            <label for="option3">Watt</label>
+        </div>
+        <div class="option" onclick="selectOption(this)">
+            <input type="radio" id="option4" name="question" value="4">
+            <label for="option4">Ampere</label>
+        </div>
+        <button id="next-button" onclick="nextQuestion()" disabled>Next Question</button>
+    </div>
+
+     
+</body>
+</html>

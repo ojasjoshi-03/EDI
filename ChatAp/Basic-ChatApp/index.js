@@ -39,5 +39,3 @@ function onConnection(socket) {
         socket.broadcast.emit('chat-message', data)
     })
 }
-const connectDB = require('./db');
-connectDB();
