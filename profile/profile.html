@@ -76,37 +76,33 @@
         }
         
         .profile-image-container {
-            width: 180px;
-    height: 180px;
+    position: relative;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     overflow: hidden;
-    margin-right: 30px;
-    border: 5px solid #fff;
-    box-shadow: var(--shadow);
-    transition: transform 0.3s ease-in-out;
-        }
-        
-        
-        .profile-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        
-        .profile-image-placeholder {
-            width: 100%;
-            height: 100%;
-            background-color: #e0e0e0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #999;
-            font-size: 36px;
-        }
+    border: 2px dashed #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: auto;
+}
+
+.profile-image-placeholder {
+    font-size: 30px;
+    color: #888;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
         
         .upload-btn {
-            position: absolute;
+            position: static;
     bottom: 10px;
     right: 10px;
     background: #DF2771;
@@ -241,9 +237,61 @@
                 transform: skewY(-5deg);
             }
         }
+        .menu {
+	cursor: pointer;
+	width: 25px;
+	display: none;
+}
+.side-menu {
+	width: 50%;
+	height: 100%;
+	background: rgba(182, 33, 90, 0.993);
+	position: absolute;
+	top: 0;
+	transition: .8s;
+	z-index: 2000;
+	transform: translateX(-100%);
+}
+.side-menu ul {
+	margin-top: 35%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	/* background: #FA4B37; */
+}
+.side-menu ul li {
+	list-style: none;
+	/* background: #009900; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* border-bottom: 1px solid #fff; */
+	/* padding: 10px 0px; */
+}
+.side-menu ul li:hover a{
+	background: #fff;
+	color: #DF2771;
+}
+.side-menu ul li a{
+	color: #FFF;
+	width: 100%;
+	font-size: 1em;
+	/* background: #2E3D49; */
+	text-decoration: none;
+	padding: 15px 0px;
+}
+.menu {
+		display: block;
+	}
     </style>
 </head>
 <body>
+    <nav>
+        
+        <div class="menu">
+          <a href="C:\Users\Joshi\Desktop\New folder\EduFix\index.html" > <img src="menu.png" class="menu" onclick="sideMenu(0)" alt="menu"></a>
+        </div>
+        </nav>
     <div class="csec-top-left"></div>
     <div class="csec"></div>
     
@@ -258,12 +306,15 @@
                 <div class="profile-top">
                     <div class="profile-image-container">
                         <div class="profile-image-placeholder" id="image-placeholder">
-                            <span>+</span>
+                            
                         </div>
-                        <img id="profile-image" class="profile-image" style="display:none;">
+                        <img id="profile-image" class="profile-image" style="display: none;">
                         <label for="file-upload" class="upload-btn">+</label>
                         <input type="file" id="file-upload" class="file-input" accept="image/*">
                     </div>
+                </div>
+            </div>
+            
                     
                     <div class="personal-details">
                         <div class="info-item">
@@ -301,19 +352,19 @@
     
     <script>
         // Handle file upload for profile image
-        document.getElementById('file-upload').addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const profileImage = document.getElementById('profile-image');
-                    profileImage.src = e.target.result;
-                    profileImage.style.display = 'block';
-                    document.getElementById('image-placeholder').style.display = 'none';
-                }
-                reader.readAsDataURL(file);
-            }
-        });
+        document.getElementById("file-upload").addEventListener("change", function (event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementById("profile-image").src = e.target.result;
+            document.getElementById("profile-image").style.display = "block";
+            document.getElementById("image-placeholder").style.display = "none";
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
         
         // Update display name and aim when editing
         document.getElementById('name').addEventListener('input', function() {
@@ -338,6 +389,17 @@
             
             console.log('Profile data saved:', profileData);
         });
+        
+function sideMenu(side) {
+  var menu = document.getElementById('side-menu');
+  if(side==0) {
+    menu.style = 'transform: translateX(0vh); position:fixed;';
+  }
+  else {
+    menu.style = 'transform: translateX(-100%);';
+  }
+  side++;
+}
     </script>
 </body>
 </html>
