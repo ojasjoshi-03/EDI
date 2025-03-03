@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Online Education Website</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fff;
+      padding: 10px 20px;
+      border-bottom: 1px solid #ddd;
+      position: relative;
+    }
+
+    header .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    header .search-bar {
+      flex: 1;
+      text-align: center;
+    }
+
+    header .search-bar input {
+      width: 60%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    /* Top-right images (icons as buttons) */
+    .top-right-images {
+      display: flex;
+      gap: 10px;
+    }
+
+    .top-right-images a {
+      display: inline-block;
+      background-color: #f1f1f1;
+      padding: 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .top-right-images a:hover {
+      background-color: #ff6600;
+    }
+
+    .top-right-images img {
+      width: 30px;
+      height: 30px;
+    }
+
+    /* Login and Register buttons below the icons */
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-end;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #fff;
+      background-color: #ff6600;
+      padding: 8px 15px;
+      border-radius: 5px;
+      font-size: 14px;
+      transition: background-color 0.3s;
+    }
+
+    .nav a:hover {
+      background-color: #e55b00;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 200px;
+      background-color: #fff;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 20px;
+      border-right: 1px solid #ddd;
+    }
+
+    .sidebar ul {
+      list-style: none;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 15px;
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      color: #333;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: color 0.3s;
+    }
+
+    .sidebar ul li a img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .sidebar ul li a:hover {
+      color: #ff6600;
+    }
+
+    /* Main Content */
+    .main-content {
+      margin-left: 220px;
+      padding: 20px;
+    }
+
+    .main-content h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .quick-options {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .quick-options .card {
+      background-color: #fff;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      flex: 1;
+      text-align: center;
+    }
+
+    .quick-options .card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .quick-options .card a {
+      text-decoration: none;
+      color: #007bff;
+      display: block;
+      margin: 5px 0;
+      transition: color 0.3s;
+    }
+
+    .quick-options .card a:hover {
+      color: #0056b3;
+    }
+
+    .quick-options .card button {
+      padding: 10px 20px;
+      background-color: #ff6600;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .quick-options .card button:hover {
+      background-color: #e55b00;
+    }
+
+    .latest-courses {
+      margin-top: 20px;
+    }
+
+    .latest-courses h2 {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+
+    .latest-courses .course-list {
+      display: flex;
+      gap: 10px;
+    }
+
+    .latest-courses .course-item {
+      background-color: #fff;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      text-align: center;
+      flex: 1;
+    }
+
+    .latest-courses .course-item img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #fff;
+      border-top: 1px solid #ddd;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">Educa</div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search courses...">
+    </div>
+    <div class="top-right-images">
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/4606/4606468.png" alt="Icon 1"></a>
+      <a href="#"><img src="https://th.bing.com/th?id=OIP.KKWvbSytnSIkIpWTfKUFYwHaIs&w=230&h=270&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Icon 2"></a>
+      <a href="#"><img src="https://th.bing.com/th/id/OIP.Drl_Q7a-tWGF4Wo8PyE1HgAAAA?rs=1&pid=ImgDetMain" alt="Icon 3"></a>
+    </div>
+    <div class="nav">
+      <a href="login.html">Login</a>
+      <a href="register.html">Register</a>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <ul>
+      <li><a href="#"><img src="https://th.bing.com/th/id/OIP.oc1XqNgMdX3ALOj_JM1pMQHaHa?rs=1&pid=ImgDetMain" alt="Home">Home</a></li>
+      <li><a href="#"><img src="https://th.bing.com/th/id/OIP.JVra604IkUViWgykDiJUwQHaHa?rs=1&pid=ImgDetMain" alt="About Us">About Us</a></li>
+      <li><a href="#"><img src="https://th.bing.com/th/id/OIP.sJxilO4BEptec9soWxIQ-wHaHk?rs=1&pid=ImgDetMain" alt="Courses">Courses</a></li>
+      <li><a href="#"><img src="https://th.bing.com/th/id/OIP.IJkTHt2qTbFJHxSvzFUEJgHaHa?rs=1&pid=ImgDetMain" alt="Teachers">Teachers</a></li>
+      <li><a href="#"><img src="https://th.bing.com/th/id/OIP.GTLHqleNuAdc57jVQr9NjAHaHa?w=184&h=184&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Contact Us">Contact Us</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <h1>Quick Options</h1>
+    <div class="quick-options">
+      <div class="card">
+        <h3>Please Login or Register</h3>
+        <a href="login.html"><button>Login</button></a>
+        <a href="register.html"><button>Register</button></a>
+      </div>
+      <div class="card">
+        <h3>Top Categories</h3>
+        <a href="#">Development</a>
+        <a href="#">Business</a>
+        <a href="#">Design</a>
+        <a href="#">Marketing</a>
+        <a href="#">Music</a>
+      </div>
+      <div class="card">
+        <h3>Popular Topics</h3>
+        <a href="#">HTML</a>
+        <a href="#">CSS</a>
+        <a href="#">JavaScript</a>
+        <a href="#">React</a>
+        <a href="#">PHP</a>
+      </div>
+      <div class="card">
+        <h3>Become a Tutor</h3>
+        <button>Get Started</button>
+      </div>
+    </div>
+
+    <div class="latest-courses">
+      <h2>Latest Courses</h2>
+      <div class="course-list">
+        <div class="course-item">
+          <img src="https://via.placeholder.com/50" alt="Tutor B">
+          <p>Tutor B</p>
+          <p>2022-10-02</p>
+        </div>
+        <div class="course-item">
+          <img src="https://via.placeholder.com/50" alt="Tutor B">
+          <p>Tutor B</p>
+          <p>2022-10-02</p>
+        </div>
+        <div class="course-item">
+          <img src="https://via.placeholder.com/50" alt="Tutor B">
+          <p>Tutor B</p>
+          <p>2022-10-02</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2022 by Educa | All Rights Reserved
+  </footer>
+</body>
+</html>
