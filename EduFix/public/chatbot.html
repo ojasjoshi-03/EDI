@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Chatbot</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            text-align: center;
+            margin: 20px;
+        }
+        .chat-container {
+            width: 350px;
+            margin: auto;
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .chat-box {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .message {
+            padding: 5px;
+            margin: 5px 0;
+            border-radius: 5px;
+            max-width: 80%;
+        }
+        .user { background: #d1e7fd; align-self: flex-end; text-align: right; }
+        .bot { background: #e8e8e8; text-align: left; }
+        .input-area {
+            display: flex;
+            margin-top: 10px;
+        }
+        input {
+            flex: 1;
+            padding: 5px;
+            border: 1px solid #ddd;
+        }
+        button {
+            padding: 5px 10px;
+            background: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Simple Chatbot</h2>
+    <div class="chat-container">
+        <div class="chat-box" id="chatBox"></div>
+        <div class="input-area">
+            <input type="text" id="userInput" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const API_KEY = "AIzaSyA8ya9rStpvemLZ3cjhagM0ILkZ0eQlBzw"; // Replace with your actual API key
+
+        async function sendMessage() {
+            let inputField = document.getElementById("userInput");
+            let chatBox = document.getElementById("chatBox");
+            let userMessage = inputField.value.trim();
+
+            if (userMessage === "") return;
+
+            // Display user message
+            chatBox.innerHTML += `<div class="message user"><b>You:</b> ${userMessage}</div>`;
+            inputField.value = "";
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            try {
+                // Correct API request format
+                let response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${API_KEY}`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: userMessage }] }]
+                    })
+                });
+
+                let data = await response.json();
+
+                if (data && data.candidates && data.candidates.length > 0) {
+                    let botResponse = data.candidates[0].content.parts[0].text;
+                    chatBox.innerHTML += `<div class="message bot"><b>Bot:</b> ${botResponse}</div>`;
+                } else {
+                    throw new Error("Invalid response from API");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                chatBox.innerHTML += `<div class="message bot"><b>Bot:</b> Error fetching response.</div>`;
+            }
+
+            chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll
+        }
+    </script>
+
+</body>
+</html>

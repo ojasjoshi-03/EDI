@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Profile</title>
+    <style>
+        :root {
+            --primary-color: #3a6ea5;
+            --secondary-color: #f0f4f8;
+            --text-color: #333;
+            --light-text: #666;
+            --border-radius: 8px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.3); 
+    backdrop-filter: blur(10px); 
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    padding: 20px;
+    transition: transform 0.3s ease-in-out;
+            
+        }
+        
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .profile-header {
+            padding: 30px;
+            background: linear-gradient(to right, #FA4B37, #DF2771);
+            color: white;
+            text-align: center;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+    box-shadow: var(--shadow);
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 1px;
+        }
+        
+        .profile-header h1 {
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        
+        .profile-content {
+            padding: 30px;
+        }
+        
+        .profile-top {
+            display: flex;
+            margin-bottom: 30px;
+        }
+        
+        .profile-image-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px dashed #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: auto;
+}
+
+.profile-image-placeholder {
+    font-size: 30px;
+    color: #888;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+        
+        .upload-btn {
+            position: static;
+    bottom: 10px;
+    right: 10px;
+    background: #DF2771;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+        }
+        .upload-btn:hover {
+    background: #c52250;
+}
+        
+        .file-input {
+            display: none;
+        }
+        
+        .personal-details {
+            flex-grow: 1;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #DF2771;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+        
+        .info-item {
+            margin-bottom: 15px;
+        }
+        
+        .info-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            color: #DF2771
+        }
+        
+        .info-content {
+            background-color: var(--secondary-color);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            min-height: 50px;
+        }
+        
+        .editable {
+            outline: none;
+    padding: 10px;
+    border: 1px solid transparent;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: var(--border-radius);
+    transition: border 0.3s ease-in-out;
+        }
+        
+        .editable:hover {
+            border: 1px solid #DF2771;
+        }
+        
+        .editable:focus {
+            border: 1px solid var(--primary-color);
+        }
+        
+        .btn {
+            background: linear-gradient(to right, #FA4B37, #DF2771);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            margin-top: 15px;
+        }
+        
+        .btn:hover {
+            background-color: #2a5a8a;
+        }
+
+        .csec {
+    background: linear-gradient(to right, #FA4B37, #DF2771);
+    background-attachment: fixed; 
+    position: absolute;
+    width: 100%;
+    height: 250px;
+    top: 200px;
+    content: '';
+    transform-origin: top right;
+    transform: skewY(-10deg);
+    z-index: -1;
+    transition: all 0.5s ease-in-out;
+}
+
+.csec::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1); 
+    z-index: -1;
+}
+        
+        @media (max-width: 768px) {
+            .profile-top {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .profile-image-container {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            .csec{
+                height: 200px;
+                top: 150px;
+                transform: skewY(-5deg);
+            }
+        }
+        .menu {
+	cursor: pointer;
+	width: 25px;
+	display: none;
+}
+.side-menu {
+	width: 50%;
+	height: 100%;
+	background: rgba(182, 33, 90, 0.993);
+	position: absolute;
+	top: 0;
+	transition: .8s;
+	z-index: 2000;
+	transform: translateX(-100%);
+}
+.side-menu ul {
+	margin-top: 35%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	/* background: #FA4B37; */
+}
+.side-menu ul li {
+	list-style: none;
+	/* background: #009900; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* border-bottom: 1px solid #fff; */
+	/* padding: 10px 0px; */
+}
+.side-menu ul li:hover a{
+	background: #fff;
+	color: #DF2771;
+}
+.side-menu ul li a{
+	color: #FFF;
+	width: 100%;
+	font-size: 1em;
+	/* background: #2E3D49; */
+	text-decoration: none;
+	padding: 15px 0px;
+}
+.menu {
+		display: block;
+	}
+    </style>
+</head>
+<body>
+    <nav>
+        
+        <div class="menu">
+          <a href="C:\Users\Joshi\Desktop\New folder\EduFix\index.html" > <img src="menu.png" class="menu" onclick="sideMenu(0)" alt="menu"></a>
+        </div>
+        </nav>
+    <div class="csec-top-left"></div>
+    <div class="csec"></div>
+    
+    <div class="container">
+        <div class="card profile-container">
+            <div class="profile-header">
+                <h1 id="display-name">Your Name</h1>
+                <p id="display-aim">Your Professional Aim</p>
+            </div>
+            
+            <div class="profile-content">
+                <div class="profile-top">
+                    <div class="profile-image-container">
+                        <div class="profile-image-placeholder" id="image-placeholder">
+                            
+                        </div>
+                        <img id="profile-image" class="profile-image" style="display: none;">
+                        <label for="file-upload" class="upload-btn">+</label>
+                        <input type="file" id="file-upload" class="file-input" accept="image/*">
+                    </div>
+                </div>
+            </div>
+            
+                    
+                    <div class="personal-details">
+                        <div class="info-item">
+                            <span class="info-label">Name</span>
+                            <div class="info-content">
+                                <div class="editable" id="name" contenteditable="true">Enter your name</div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Professional Aim</span>
+                            <div class="info-content">
+                                <div class="editable" id="aim" contenteditable="true">Enter your professional aim</div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Qualifications</span>
+                            <div class="info-content">
+                                <div class="editable" id="qualification" contenteditable="true">Enter your qualifications</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3 class="section-title">About Me</h3>
+                    <div class="info-content">
+                        <div class="editable" id="about" contenteditable="true">Tell something about yourself, your experience, skills, and interests...</div>
+                    </div>
+                </div>
+                
+                <button class="btn" id="save-btn">Save Profile</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Handle file upload for profile image
+        document.getElementById("file-upload").addEventListener("change", function (event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementById("profile-image").src = e.target.result;
+            document.getElementById("profile-image").style.display = "block";
+            document.getElementById("image-placeholder").style.display = "none";
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+        
+        // Update display name and aim when editing
+        document.getElementById('name').addEventListener('input', function() {
+            document.getElementById('display-name').textContent = this.textContent;
+        });
+        
+        document.getElementById('aim').addEventListener('input', function() {
+            document.getElementById('display-aim').textContent = this.textContent;
+        });
+        
+        // Save profile data
+        document.getElementById('save-btn').addEventListener('click', function() {
+            alert('Profile information saved successfully!');
+            
+            // Here you would typically send the data to a server
+            const profileData = {
+                name: document.getElementById('name').textContent,
+                aim: document.getElementById('aim').textContent,
+                qualification: document.getElementById('qualification').textContent,
+                about: document.getElementById('about').textContent
+            };
+            
+            console.log('Profile data saved:', profileData);
+        });
+        
+function sideMenu(side) {
+  var menu = document.getElementById('side-menu');
+  if(side==0) {
+    menu.style = 'transform: translateX(0vh); position:fixed;';
+  }
+  else {
+    menu.style = 'transform: translateX(-100%);';
+  }
+  side++;
+}
+    </script>
+</body>
+</html>
+  

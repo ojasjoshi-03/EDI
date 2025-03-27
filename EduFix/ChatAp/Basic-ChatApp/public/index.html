@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Chat App</title>
+  <style>
+    /* Animated gradient background */
+    body {
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1, #84fab0, #8fd3f4);
+background-size: 400% 400%;
+animation: gradientAnimation 6s ease infinite;
+
+      font-family: 'Inter', sans-serif;
+    }
+
+    @keyframes gradientAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* Subtle animations */
+    .fade-in {
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Background highlights */
+    #message-container {
+      background: linear-gradient(to bottom right, #ffffff, #f9f9f9);
+      border: 2px solid rgba(0, 0, 0, 0.1); /* Subtle border for the container */
+      border-radius: 12px; 
+    }
+    .col-span-3 {
+  border: 2px dashed #f59e0b; /* Dashed border for the Clients section */
+  border-radius: 12px;
+}
+
+.col-span-9 {
+  border: 2px solid #3b82f6; /* Solid border for the Chat section */
+  border-radius: 12px;
+}
+
+#clients-list {
+  border: 1px solid #e5e7eb; /* Light border inside the Clients section */
+  border-radius: 8px;
+}
+
+#chat-message-container {
+  border: 1px solid #d1d5db; /* Light border for the Messages list */
+  border-radius: 8px;
+}
+
+#message-form {
+  border: 1px solid #cbd5e1; /* Border around the input and send button */
+  border-radius: 8px;
+  padding: 8px; /* Add spacing inside the form */
+}
+    #clients-list {
+      background-color: #fef6e4;
+    }
+
+    #chat-message-container {
+      background-color: #f2f8ff;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex items-center justify-center">
+  <div class="container mx-auto p-6 bg-white shadow-2xl rounded-3xl fade-in">
+    <!-- Two-column layout -->
+    <div id="message-container" class="grid grid-cols-12 gap-8 rounded-3xl">
+      <!-- Left Column: Clients -->
+      <div class="col-span-4 bg-gradient-to-b from-yellow-50 to-orange-50 shadow-md rounded-xl p-6">
+        <h3 class="text-lg font-semibold text-gray-700 mb-4 flex items-center space-x-2">
+          <i class="fas fa-users text-yellow-600"></i>
+          <span>Clients</span>
+        </h3>
+        <div class="flex items-center border border-gray-200 rounded-lg px-3 py-2 mb-4 bg-white">
+          <i class="fa fa-user text-gray-500"></i>
+          <input type="text" id="name-input" placeholder="Anonymous" maxlength="20"
+            class="bg-transparent border-none w-full text-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded-lg">
+        </div>
+        <ul id="clients-list" class="divide-y divide-gray-200 p-4 rounded-md shadow-sm">
+          <li class="text-sm text-gray-500">No clients connected...</li>
+        </ul>
+      </div>
+
+      <!-- Right Column: Chat Box -->
+      <div class="col-span-8 bg-gradient-to-r from-blue-50 to-indigo-50 shadow-md rounded-xl overflow-hidden">
+        <!-- Header Section -->
+        <div
+          class="bg-gradient-to-r from-blue-600 to-indigo-500 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+          <div class="flex items-center space-x-2">
+            <i class="fas fa-users"></i>
+            <h3 class="text-base font-medium" id="total-clients">Total Clients: 0</h3>
+          </div>
+          <div class="flex items-center space-x-2">
+            <i class="fas fa-user"></i>
+            <span id="current-chat-user-name" class="text-base font-semibold">Ved</span>
+          </div>
+        </div>
+
+        <!-- Chat Area -->
+        <div class="p-6 bg-gray-50 space-y-6">
+          <!-- Messages Section -->
+          <ul id="chat-message-container" class="space-y-4 p-4 rounded-lg shadow-sm">
+            <li class="text-gray-500 text-sm italic">No messages yet...</li>
+          </ul>
+
+          <!-- Message Form -->
+          <form class="flex items-center space-x-4" id="message-form">
+            <input type="text" autocomplete="off" name="message" id="message-input"
+              class="flex-grow border border-gray-200 rounded-full px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-400 placeholder-gray-400"
+              placeholder="Type a message">
+            <button type="submit"
+              class="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-6 py-2 rounded-full shadow-md hover:from-indigo-500 hover:to-blue-500 transition-all">
+              Send <i class="fas fa-paper-plane ml-2"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>

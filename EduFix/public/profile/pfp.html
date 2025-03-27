@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Profile Page</title>
+    <link rel="stylesheet" href="pfp.css">
+</head>
+<body>
+    <div class="profile-container ">
+        <div class="banner"></div>
+        <div class="profile-photo" id="pfp" onclick="uploadPhoto()">
+            <input type="file" id="photoUpload" accept="image/*" style="display: none;" />
+            <img id="profileImage" src="" alt="Profile Photo">
+        </div>
+        <div class="content-row">
+            <!-- About Me Section -->
+            <div class="about-box">
+                <button class="edit-btn about-edit">✏</button>
+                <h2>- About Me -</h2>
+                <p id="about-text"></p>
+            </div>
+            <!-- Name, Qualification, Aim Section -->
+            <div class="details-box">
+                <div class="detail-item">
+                    <span>Name:</span>
+                    <span id="name-text">Your Name</span>
+                    <button class="edit-btn" onclick="editText('name-text')">✏</button>
+                </div>
+                <div class="detail-item">
+                    <span>Qualification:</span>
+                    <span id="qualification-text">Your Qualification</span>
+                    <button class="edit-btn" onclick="editText('qualification-text')">✏</button>
+                </div>
+                <div class="detail-item">
+                    <span>Aim:</span>
+                    <span id="aim-text">Your Aim</span>
+                    <button class="edit-btn" onclick="editText('aim-text')">✏</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="pfp.js"></script>
+</body>
+</html>
